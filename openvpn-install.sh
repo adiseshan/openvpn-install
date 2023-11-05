@@ -330,6 +330,7 @@ function installQuestions() {
 	echo "   11) AdGuard DNS (Anycast: worldwide)"
 	echo "   12) NextDNS (Anycast: worldwide)"
 	echo "   13) Custom"
+	echo "   Auto selected as 1"
 	# until [[ $DNS =~ ^[0-9]+$ ]] && [ "$DNS" -ge 1 ] && [ "$DNS" -le 13 ]; do
 		# read -rp "DNS [1-12]: " -e -i 11 DNS
 		DNS=1

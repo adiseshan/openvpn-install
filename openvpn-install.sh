@@ -228,7 +228,9 @@ function installQuestions() {
 	echo "Unless your server is behind NAT, it should be your public IPv4 address."
 
 	# Detect public IPv4 address and pre-fill for the user
-	IP=$(ip -4 addr | sed -ne 's|^.* inet \([^/]*\)/.* scope global.*$|\1|p' | head -1)
+	# IP=$(ip -4 addr | sed -ne 's|^.* inet \([^/]*\)/.* scope global.*$|\1|p' | head -1)
+	# opinionate that the server is ec2 in aws
+	IP=$(curl http://169.254.169.254/latest/meta-data/public-ipv4)
 
 	if [[ -z $IP ]]; then
 		# Detect public IPv6 address

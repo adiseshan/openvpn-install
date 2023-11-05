@@ -364,9 +364,10 @@ function installQuestions() {
 	# done
 	echo ""
 	echo "Do you want to use compression? It is not recommended since the VORACLE attack makes use of it."
-	until [[ $COMPRESSION_ENABLED =~ (y|n) ]]; do
-		read -rp"Enable compression? [y/n]: " -e -i n COMPRESSION_ENABLED
-	done
+	COMPRESSION_ENABLED=n
+	# until [[ $COMPRESSION_ENABLED =~ (y|n) ]]; do
+	# 	read -rp"Enable compression? [y/n]: " -e -i n COMPRESSION_ENABLED
+	# done
 	if [[ $COMPRESSION_ENABLED == "y" ]]; then
 		echo "Choose which compression algorithm you want to use: (they are ordered by efficiency)"
 		echo "   1) LZ4-v2"
@@ -393,9 +394,10 @@ function installQuestions() {
 	echo "Note that whatever you choose, all the choices presented in the script are safe. (Unlike OpenVPN's defaults)"
 	echo "See https://github.com/angristan/openvpn-install#security-and-encryption to learn more."
 	echo ""
-	until [[ $CUSTOMIZE_ENC =~ (y|n) ]]; do
-		read -rp "Customize encryption settings? [y/n]: " -e -i n CUSTOMIZE_ENC
-	done
+	CUSTOMIZE_ENC=n
+	# until [[ $CUSTOMIZE_ENC =~ (y|n) ]]; do
+	# 	read -rp "Customize encryption settings? [y/n]: " -e -i n CUSTOMIZE_ENC
+	# done
 	if [[ $CUSTOMIZE_ENC == "n" ]]; then
 		# Use default, sane and fast parameters
 		CIPHER="AES-128-GCM"
@@ -611,6 +613,7 @@ function installQuestions() {
 	echo ""
 	echo "Okay, that was all I needed. We are ready to setup your OpenVPN server now."
 	echo "You will be able to generate a client at the end of the installation."
+	APPROVE_INSTALL=y
 	APPROVE_INSTALL=${APPROVE_INSTALL:-n}
 	if [[ $APPROVE_INSTALL =~ n ]]; then
 		read -n1 -r -p "Press any key to continue..."

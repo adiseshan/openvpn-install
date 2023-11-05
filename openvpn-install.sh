@@ -270,17 +270,19 @@ function installQuestions() {
 	fi
 	echo ""
 	# Ask the user if they want to enable IPv6 regardless its availability.
-	until [[ $IPV6_SUPPORT =~ (y|n) ]]; do
-		read -rp "Do you want to enable IPv6 support (NAT)? [y/n]: " -e -i $SUGGESTION IPV6_SUPPORT
-	done
+	IPV6_SUPPORT=n
+	# until [[ $IPV6_SUPPORT =~ (y|n) ]]; do
+	# 	read -rp "Do you want to enable IPv6 support (NAT)? [y/n]: " -e -i $SUGGESTION IPV6_SUPPORT
+	# done
 	echo ""
 	echo "What port do you want OpenVPN to listen to?"
 	echo "   1) Default: 1194"
 	echo "   2) Custom"
 	echo "   3) Random [49152-65535]"
-	until [[ $PORT_CHOICE =~ ^[1-3]$ ]]; do
-		read -rp "Port choice [1-3]: " -e -i 1 PORT_CHOICE
-	done
+	# until [[ $PORT_CHOICE =~ ^[1-3]$ ]]; do
+	# 	read -rp "Port choice [1-3]: " -e -i 1 PORT_CHOICE
+	# done
+	PORT_CHOICE=1
 	case $PORT_CHOICE in
 	1)
 		PORT="1194"
@@ -301,9 +303,10 @@ function installQuestions() {
 	echo "UDP is faster. Unless it is not available, you shouldn't use TCP."
 	echo "   1) UDP"
 	echo "   2) TCP"
-	until [[ $PROTOCOL_CHOICE =~ ^[1-2]$ ]]; do
-		read -rp "Protocol [1-2]: " -e -i 1 PROTOCOL_CHOICE
-	done
+	# until [[ $PROTOCOL_CHOICE =~ ^[1-2]$ ]]; do
+	# 	read -rp "Protocol [1-2]: " -e -i 1 PROTOCOL_CHOICE
+	# done
+	PROTOCOL_CHOICE=1
 	case $PROTOCOL_CHOICE in
 	1)
 		PROTOCOL="udp"
@@ -327,7 +330,7 @@ function installQuestions() {
 	echo "   11) AdGuard DNS (Anycast: worldwide)"
 	echo "   12) NextDNS (Anycast: worldwide)"
 	echo "   13) Custom"
-	until [[ $DNS =~ ^[0-9]+$ ]] && [ "$DNS" -ge 1 ] && [ "$DNS" -le 13 ]; do
+
 		read -rp "DNS [1-12]: " -e -i 11 DNS
 		if [[ $DNS == 2 ]] && [[ -e /etc/unbound/unbound.conf ]]; then
 			echo ""
@@ -356,7 +359,6 @@ function installQuestions() {
 				fi
 			done
 		fi
-	done
 	echo ""
 	echo "Do you want to use compression? It is not recommended since the VORACLE attack makes use of it."
 	until [[ $COMPRESSION_ENABLED =~ (y|n) ]]; do

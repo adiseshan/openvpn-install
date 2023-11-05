@@ -1164,6 +1164,11 @@ function newClient() {
 	echo "The configuration file has been written to $homeDir/$CLIENT.ovpn."
 	echo "Download the .ovpn file and import it in your OpenVPN client."
 
+	mkdir -p "$homeDir/vpn-profiles"
+	cd "$homeDir/vpn-profiles"
+	cp "$homeDir/$CLIENT.ovpn" "$homeDir/vpn-profiles/$CLIENT.ovpn"
+	python3 -m http.server >/dev/null &2>1 &
+
 	exit 0
 }
 

@@ -1040,7 +1040,8 @@ WantedBy=multi-user.target" >/etc/systemd/system/iptables-openvpn.service
 	elif [[ $PROTOCOL == 'tcp' ]]; then
 		echo "proto tcp-client" >>/etc/openvpn/client-template.txt
 	fi
-	echo "remote $IP $PORT
+	# echo "remote $IP $PORT
+	echo "remote vpn-server-ind.hungry-stomach.com $PORT
 dev tun
 resolv-retry infinite
 nobind

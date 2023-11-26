@@ -1041,7 +1041,8 @@ WantedBy=multi-user.target" >/etc/systemd/system/iptables-openvpn.service
 		echo "proto tcp-client" >>/etc/openvpn/client-template.txt
 	fi
 	# echo "remote $IP $PORT
-	echo "remote vpn-server-ind.hungry-stomach.com $PORT
+	# echo "remote vpn-server-ind.hungry-stomach.com $PORT
+	echo "remote $VPN_HOST $PORT
 dev tun
 resolv-retry infinite
 nobind
